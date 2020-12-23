@@ -7,7 +7,7 @@ ADD --chown=nodebuild:nodebuild ./ /nodeapp
 USER nodebuild
 RUN npm ci
 
-EXPOSE 3333
+EXPOSE 8333
 
 USER node
 CMD ["npm", "run" ,"start-prod"]

@@ -1,0 +1,31 @@
+version: '3'
+networks:
+  default:
+    external:
+      name: fwabackend_mongo_network
+services:
+  nodeapp_service:
+#    stdin_open: true
+    build:
+      context: .
+      args:
+        HOST_DATA_ROOT: ${HOST_DATA_ROOT}
+        CONTAINER_DATA_ROOT: ${CONTAINER_DATA_ROOT}
+      dockerfile: Dockerfile
+    image: nodeapp_image
+    container_name: nodeapp
+    environment:
+      MONGO_INITDB_ROOT_USERNAME:
+      MONGO_INITDB_ROOT_PASSWORD:
+      MONGO_URL:
+      MONGO_PORT:
+    ports:
+      - '3333:8333'
+    volumes:
+      - ${HOST_DATA_ROOT}:${CONTAINER_DATA_ROOT}
+#    healthcheck:
+#      test: ["CMD", "curl", "-f", "http://localhost:8333/health"]
+#      interval: 1m30s
+#      timeout: 10s
+#      retries: 3
+#      start_period: 40s
