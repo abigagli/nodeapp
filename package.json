@@ -1,0 +1,13 @@
+{
+  "name": "nodeapp",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest --coverage",
+    "start-prod": "node app/index.js",
+    "debug": "node --inspect app/index.js"
+  },
+  "author": "Andrea Bigagli",
+  "license": "ISC"
+}

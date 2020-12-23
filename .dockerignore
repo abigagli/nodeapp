@@ -1,0 +1,5 @@
+npm-debug.log
+.vscode
+README.md
+Dockerfile
+docker-compose.yml
