@@ -2,13 +2,29 @@
 'use strict';
 
 
-
 const handleEndpoint1 = async (req, res, next) => {
   try {
-      console.log ("Got request with parameter " + req.some_parameter);
+      console.log ("Got request without url parameters");
 
     res.json({
-      somekey: "somevalue",
+        some_key: "some_value"
+    });
+  } catch (e) {
+    next(e);
+  }
+};
+
+const handleEndpoint1WithUrlParamter = async (req, res, next) => {
+  try {
+      let params = {
+        url: req.params.url_parameter,
+        req: req.query.req_parameter
+      };
+
+      console.log ("Got request with url parameters %j" + params);
+
+    res.json({
+      received_params: params
     });
   } catch (e) {
     next(e);
@@ -20,7 +36,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const compression = require('compression');
 const app = express();
-const nocache = require('nocache');
+//const nocache = require('nocache');
 
 // INfrastructuralParameters
 const INP_listeningPort = 3333;
@@ -37,7 +53,7 @@ const corsOptions = {
 const router = new express.Router();
 
 
-app.use(nocache());
+//app.use(nocache());
 app.use(compression());
 app.use(cors(corsOptions));
 app.options('*', cors(corsOptions));
@@ -49,7 +65,8 @@ app.use('/health', (req, res) => {
 });
 
 
-router.get('/endpoint1/:some_parameter', handleEndpoint1);
+router.get('/endpoint1', handleEndpoint1);
+router.get('/endpoint1/:url_parameter', handleEndpoint1WithUrlParamter);
 
 
 app.all('*', function(req, res) {
