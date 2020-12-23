@@ -1,7 +1,17 @@
 /* eslint-disable camelcase */
+
 'use strict';
+const cors = require('cors');
+const express = require('express');
+const bodyParser = require('body-parser');
+const compression = require('compression');
+const app = express();
+//const nocache = require('nocache');
 
 
+const k_listening_port = 8333;
+
+/*********************** HANDLERS ***********************/
 const handleEndpoint1 = async (req, res, next) => {
   try {
       console.log ("Got request without url parameters");
@@ -31,27 +41,18 @@ const handleEndpoint1WithUrlParamter = async (req, res, next) => {
   }
 };
 
-const cors = require('cors');
-const express = require('express');
-const bodyParser = require('body-parser');
-const compression = require('compression');
-const app = express();
-//const nocache = require('nocache');
-
-// INfrastructuralParameters
-const INP_listeningPort = 8333;
-
+/*********************** UTILS ***********************/
 function buildErrorJson(message) {
   return {'message': message};
 }
 
 const corsOptions = {
-  origin: 'http://localhost' + ':' + INP_listeningPort,
+  origin: 'http://localhost' + ':' + k_listening_port,
   optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
 };
 
+/*********************** ROUTES ***********************/
 const router = new express.Router();
-
 
 //app.use(nocache());
 app.use(compression());
@@ -74,13 +75,16 @@ app.all('*', function(req, res) {
 });
 
 app.use(function(err, req, res, next) {
-  console.error(err.message); // Log error message in our server's console
+  console.error(err.message);
   console.error(err);
   if (!err.statusCode) err.statusCode = 500; // If err has no specified error code, set error code to 'Internal Server Error (500)'
   res.status(err.statusCode).json(buildErrorJson(err.message)); // All HTTP requests must have a response, so let's send back an error with its status code and message
 });
 
-app.listen(INP_listeningPort, () => {
-  console.log('Server running on port ' + INP_listeningPort);
-});
 
+
+
+/*********************** KICK-OFF ***********************/
+app.listen(k_listening_port, () => {
+  console.log('Server running on port ' + k_listening_port);
+});
