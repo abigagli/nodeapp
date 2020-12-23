@@ -21,7 +21,7 @@ const handleEndpoint1WithUrlParamter = async (req, res, next) => {
         req: req.query.req_parameter
       };
 
-      console.log ("Got request with url parameters %j" + params);
+      console.log ("Got request with url parameters %j", params);
 
     res.json({
       received_params: params
@@ -59,7 +59,7 @@ app.use(cors(corsOptions));
 app.options('*', cors(corsOptions));
 
 app.use(bodyParser.json());
-app.use('/node/app/v1', router);
+app.use('/app/v1', router);
 app.use('/health', (req, res) => {
   res.send();
 });

@@ -24,7 +24,7 @@ services:
     volumes:
       - ${HOST_DATA_ROOT}:${CONTAINER_DATA_ROOT}
 #    healthcheck:
-#      test: ["CMD", "curl", "-f", "http://localhost:8333/health"]
+#      test: ["CMD", "curl", "-f", "http://localhost:3333/health"]
 #      interval: 1m30s
 #      timeout: 10s
 #      retries: 3
