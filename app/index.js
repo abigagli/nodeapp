@@ -1,11 +1,9 @@
 /* eslint-disable camelcase */
 
 'use strict';
-const cors = require('cors');
 const express = require('express');
 const bodyParser = require('body-parser');
 const compression = require('compression');
-const app = express();
 const nocache = require('nocache');
 
 
@@ -44,25 +42,21 @@ const handleEndpoint1WithUrlParamter = async (req, res, next) => {
   }
 };
 
-/*********************** UTILS ***********************/
+/*********************** PRELIMINARY ***********************/
 function buildErrorJson(message) {
   return {'message': message};
 }
 
-const corsOptions = {
-  origin: 'http://localhost' + ':' + k_listening_port,
-  optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
-};
-
-/*********************** ROUTES ***********************/
 const router = new express.Router();
+const app = express();
 
 app.use(nocache());
 app.use(compression());
-app.use(cors(corsOptions));
-app.options('*', cors(corsOptions));
 
 app.use(bodyParser.json());
+
+
+/*********************** ROUTES ***********************/
 app.use('/app/v1', router);
 app.use('/health', (req, res) => {
   res.send();
