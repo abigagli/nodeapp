@@ -1,0 +1,14 @@
+GET http://localhost:8333/app/v1/endpoint1/queryparam=somevalue 
+
+###
+GET http://localhost:8333/app/v1/endpoint1/URLPARAMETER?queryparam=somevalue 
+
+###
+
+POST http://localhost:8333/app/v1/endpoint1 HTTP/1.1
+content-type: application/json
+
+{
+    "key1": "value1",
+    "key2": "value2"
+}
