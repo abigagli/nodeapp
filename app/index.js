@@ -6,7 +6,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const compression = require('compression');
 const app = express();
-//const nocache = require('nocache');
+const nocache = require('nocache');
 
 
 const k_listening_port = 8333;
@@ -57,7 +57,7 @@ const corsOptions = {
 /*********************** ROUTES ***********************/
 const router = new express.Router();
 
-//app.use(nocache());
+app.use(nocache());
 app.use(compression());
 app.use(cors(corsOptions));
 app.options('*', cors(corsOptions));
