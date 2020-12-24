@@ -14,10 +14,13 @@ const k_listening_port = 8333;
 /*********************** HANDLERS ***********************/
 const handleEndpoint1 = async (req, res, next) => {
   try {
-      console.log ("Got request without url parameters");
+      let params = {
+        query: req.query
+      };
+      console.log ("Got request without url parameters ", params);
 
     res.json({
-        some_key: "some_value"
+        received_params: params
     });
   } catch (e) {
     next(e);
@@ -28,10 +31,10 @@ const handleEndpoint1WithUrlParamter = async (req, res, next) => {
   try {
       let params = {
         url: req.params.url_parameter,
-        req: req.query.req_parameter
+        query: req.query
       };
 
-      console.log ("Got request with url parameters %j", params);
+      console.log ("Got request with url parameters ", params);
 
     res.json({
       received_params: params
