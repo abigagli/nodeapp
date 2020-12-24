@@ -49,6 +49,11 @@ const handleGetEndpoint1WithUrlParamter = async (req, res, next) => {
   }
 };
 
+// Add a middleware to log every request being routed to V1 API
+router.use((req, res, next) => {
+  console.log("V1 API invoked ", req.url, "@", Date.now());
+  next();
+})
 
 router
     .route ("/endpoint1")
