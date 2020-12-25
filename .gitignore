@@ -55,3 +55,5 @@ typings/
 
 # Begin of custom ignores
 local
+.vscode
+build

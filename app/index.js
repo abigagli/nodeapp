@@ -44,6 +44,11 @@ app.use(function(err, req, res, next) {
   res.status(err.statusCode).json(buildErrorJson(err.message)); // All HTTP requests must have a response, so let's send back an error with its status code and message
 });
 
+
+
+const addon = require("./napi_addon");
+
+
 /*********************** KICK-OFF ***********************/
 app.listen(k_listening_port, () => {
   console.log("Server running on port " + k_listening_port);
