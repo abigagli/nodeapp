@@ -8,7 +8,7 @@
     "test": "jest --coverage",
     "start-prod": "node app/index.js",
     "debug": "node --inspect app/index.js",
-    "build": "node-gyp rebuild",
+    "build": "CXXFLAGS='-std=c++17' node-gyp rebuild",
     "clean": "node-gyp clean"
   },
   "author": "Andrea Bigagli",
