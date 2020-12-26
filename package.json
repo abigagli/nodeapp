@@ -6,11 +6,12 @@
   "gypfile": "true",
   "scripts": {
     "test": "jest --coverage",
-    "start-prod": "node app/index.js",
     "debug": "node --inspect app/index.js",
     "compile_commands": "npx node-gyp configure -- -f gyp.generator.compile_commands_json.py",
     "build:debug": "node-gyp --debug configure build && npm run compile_commands",
     "build": "node-gyp configure build && npm run compile_commands",
+    "start:debug": "npm run build:debug && node app/index.js",
+    "start": "node app/index.js",
     "clean": "node-gyp clean"
   },
   "author": "Andrea Bigagli",
