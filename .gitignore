@@ -57,3 +57,6 @@ typings/
 local
 .vscode
 build
+Debug
+Release
+compile_commands.json

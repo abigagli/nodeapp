@@ -10,7 +10,8 @@
                     {
                         "CLANG_CXX_LANGUAGE_STANDARD": "c++17",
                         "GCC_ENABLE_CPP_RTTI": "YES",
-                        "GCC_ENABLE_CPP_EXCEPTIONS": "YES"
+                        "GCC_ENABLE_CPP_EXCEPTIONS": "YES",
+#                        "OTHER_CPLUSPLUSFLAGS" : [ "-stdlib=libc++" ],
                     }
                 },
             ],
