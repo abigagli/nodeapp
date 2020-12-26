@@ -18,7 +18,7 @@
                 'OS=="linux"',
                 {
                     "cflags!": [ "-fno-exceptions" ],
-                    "cflags_cc!": [ "-fno-exceptions", "-fno-rtti" ],
+                    "cflags_cc!": [ "-std=gnu++1y", "-fno-exceptions", "-fno-rtti" ],
                     "cflags_cc+": [ "-std=c++17", "-fexceptions", "-frtti" ]
                 },
             ]
