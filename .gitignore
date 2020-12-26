@@ -55,7 +55,7 @@ typings/
 
 # Begin of custom ignores
 local
-.vscode
+.vscode/ipch
 build
 Debug
 Release

@@ -8,10 +8,9 @@
     "test": "jest --coverage",
     "start-prod": "node app/index.js",
     "debug": "node --inspect app/index.js",
-    "configure": "npx node-gyp configure",
     "compile_commands": "npx node-gyp configure -- -f gyp.generator.compile_commands_json.py",
-    "debug_build": "npm run configure && npm run compile_commands && node-gyp build --debug",
-    "release_build": "npm run configure && npm run compile_commands && node-gyp build --release",
+    "build:debug": "node-gyp --debug configure build && npm run compile_commands",
+    "build": "node-gyp configure build && npm run compile_commands",
     "clean": "node-gyp clean"
   },
   "author": "Andrea Bigagli",

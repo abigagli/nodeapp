@@ -7,3 +7,7 @@ node-modules
 env
 .env
 RESTCLIENT
+Release
+Debug
+compile_commands.json
+build
