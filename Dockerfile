@@ -1,6 +1,6 @@
 FROM node:12-alpine AS nodebuilder
 
-RUN apk add --no-cache python3 make gcc g++
+RUN apk add --no-cache python3 make gcc g++ boost-dev snappy-dev
 RUN adduser -D -h /nodeapp nodebuild
 WORKDIR /nodeapp
 ADD --chown=nodebuild:nodebuild ./ /nodeapp
