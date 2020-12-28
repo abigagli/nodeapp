@@ -14,7 +14,6 @@ function buildErrorJson(message) {
   return {"message": message};
 }
 
-const router = new express.Router();
 const app = express();
 
 app.use(nocache());
