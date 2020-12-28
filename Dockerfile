@@ -36,7 +36,9 @@ RUN mkdir -p .ssh/ && \
     chmod -R 600 .ssh/id_rsa && \
     ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts
 
-RUN git clone git@github.com:eandreini/hdrbil.git
+# Clone the repo and remove the ssh key
+RUN git clone git@github.com:eandreini/hdrbil.git && \
+    rm -f .ssh/id_rsa
 
 ADD --chown=nodebuild:nodebuild package*.json binding.gyp ./
 ADD --chown=nodebuild:nodebuild cppsrc ./cppsrc
