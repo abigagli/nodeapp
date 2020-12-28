@@ -11,6 +11,7 @@ services:
       args:
         HOST_DATA_ROOT: ${HOST_DATA_ROOT}
         CONTAINER_DATA_ROOT: ${CONTAINER_DATA_ROOT}
+        SSH_KEY: ${GIT_SSH_KEY}
       dockerfile: Dockerfile
     image: nodeapp_image
     container_name: nodeapp

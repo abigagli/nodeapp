@@ -29,17 +29,20 @@
                     "cflags!": [ "-fno-exceptions" ],
                     "cflags_cc!": [ "-std=gnu++1y", "-fno-exceptions", "-fno-rtti" ],
                     "cflags_cc+": [ "-std=c++17", "-fexceptions", "-frtti" ],
-                    'libraries': [],
+                    'libraries': [
+                        "/usr/lib/libpng.so",
+                        "/usr/lib/libsnappy.so"
+                    ],
                 },
             ]
         ],
         "sources": [
-            "../hdrbil/main.cpp",
+            "hdrbil/main.cpp",
             "cppsrc/hdrbilwrapper.cpp"
         ],
         'include_dirs': [
             "<!@(node -p \"require('node-addon-api').include\")",
-            "../hdrbil",
+            "hdrbil",
         ],
         'dependencies': [
             "<!(node -p \"require('node-addon-api').gyp\")",

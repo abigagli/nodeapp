@@ -5,7 +5,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const compression = require("compression");
 const nocache = require("nocache");
-
+const hdrbil = require("./hdrbil_bindings");
 
 const k_listening_port = 8333;
 
@@ -46,10 +46,7 @@ app.use(function(err, req, res, next) {
 
 
 
-/*
-const hdrbil = require("./addon_bindings");
-const res = hdrbil.run(["bounds", "/some/path", "layer", "3"]);
-*/
+//const res = hdrbil.run(["bounds", "/some/path", "layer", "3"]);
 
 
 /*********************** KICK-OFF ***********************/
