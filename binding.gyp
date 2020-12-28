@@ -1,6 +1,6 @@
 {
     "targets": [{
-        "target_name": "testaddon",
+        "target_name": "hdrbil",
         "conditions":
         [
             [
@@ -11,8 +11,16 @@
                         "CLANG_CXX_LANGUAGE_STANDARD": "c++17",
                         "GCC_ENABLE_CPP_RTTI": "YES",
                         "GCC_ENABLE_CPP_EXCEPTIONS": "YES",
+                        "MACOSX_DEPLOYMENT_TARGET": "10.7"
 #                        "OTHER_CPLUSPLUSFLAGS" : [ "-stdlib=libc++" ],
-                    }
+                    },
+                    'include_dirs': [
+                        "/opt/local/include",
+                        "/Users/abigagli/BOOST-CURRENT/include"
+                    ],
+                    'libraries': [
+                        #"/opt/local/lib/libsnappy.dylib"
+                    ],
                 },
             ],
             [
@@ -20,23 +28,22 @@
                 {
                     "cflags!": [ "-fno-exceptions" ],
                     "cflags_cc!": [ "-std=gnu++1y", "-fno-exceptions", "-fno-rtti" ],
-                    "cflags_cc+": [ "-std=c++17", "-fexceptions", "-frtti" ]
+                    "cflags_cc+": [ "-std=c++17", "-fexceptions", "-frtti" ],
+                    'libraries': [],
                 },
             ]
         ],
         "sources": [
-            "cppsrc/main.cpp",
-            "cppsrc/Samples/functionexample.cpp",
-            "cppsrc/Samples/actualclass.cpp",
-            "cppsrc/Samples/classexample.cpp"
+            "../hdrbil/main.cpp",
+            "cppsrc/hdrbilwrapper.cpp"
         ],
         'include_dirs': [
-            "<!@(node -p \"require('node-addon-api').include\")"
+            "<!@(node -p \"require('node-addon-api').include\")",
+            "../hdrbil",
         ],
-        'libraries': [],
         'dependencies': [
-            "<!(node -p \"require('node-addon-api').gyp\")"
+            "<!(node -p \"require('node-addon-api').gyp\")",
         ],
-        'defines': [ 'NAPI_DISABLE_CPP_EXCEPTIONS' ]
+        #'defines': [ 'NAPI_DISABLE_CPP_EXCEPTIONS' ]
     }]
 }

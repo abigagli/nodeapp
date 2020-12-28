@@ -21,10 +21,10 @@
     "compression": "^1.7.4",
     "express": "^4.17.1",
     "mongodb": "^3.6.3",
-    "nocache": "^2.1.0",
-    "node-addon-api": "^3.1.0"
+    "nocache": "^2.1.0"
   },
   "devDependencies": {
-    "node-gyp": "^7.1.2"
+    "node-gyp": "^7.1.2",
+    "node-addon-api": "^3.1.0"
   }
 }

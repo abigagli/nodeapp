@@ -46,7 +46,10 @@ app.use(function(err, req, res, next) {
 
 
 
-const addon = require("./napi_addon");
+/*
+const hdrbil = require("./addon_bindings");
+const res = hdrbil.run(["bounds", "/some/path", "layer", "3"]);
+*/
 
 
 /*********************** KICK-OFF ***********************/
