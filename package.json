@@ -7,11 +7,11 @@
   "scripts": {
     "test": "jest --coverage",
     "debug": "node --inspect app/index.js",
-    "compile_commands": "npx node-gyp configure -- -f gyp.generator.compile_commands_json.py",
-    "build:debug": "node-gyp --debug configure build && npm run compile_commands",
-    "build": "node-gyp configure build && npm run compile_commands",
-    "start:debug": "npm run build:debug && node app/index.js",
+    "compile_commands": "npx node-gyp --debug configure -- -f gyp.generator.compile_commands_json.py && ln -snf Debug/compile_commands.json",
+    "build:debug": "node-gyp --debug configure build",
+    "build:release": "node-gyp --release configure build",
     "start": "node app/index.js",
+    "build:docker": "PRIVATE_KEY=$(< ~/.ssh/$KEY_NAME); if [[ -n $PRIVATE_KEY ]]; then GIT_SSH_KEY=\"$PRIVATE_KEY\" docker-compose build; else echo \"Set proper KEY_NAME before invoking\"; fi",
     "clean": "node-gyp clean"
   },
   "author": "Andrea Bigagli",

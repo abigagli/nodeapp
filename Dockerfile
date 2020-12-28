@@ -38,12 +38,10 @@ RUN mkdir -p .ssh/ && \
 
 RUN git clone git@github.com:eandreini/hdrbil.git
 
-ADD --chown=nodebuild:nodebuild package*.json binding.gyp /nodeapp/
-ADD --chown=nodebuild:nodebuild app /nodeapp/app
-ADD --chown=nodebuild:nodebuild cppsrc /nodeapp/cppsrc
-#ADD --chown=nodebuild:nodebuild hdrbil /nodeapp/hdrbil
+ADD --chown=nodebuild:nodebuild package*.json binding.gyp ./
+ADD --chown=nodebuild:nodebuild cppsrc ./cppsrc
 
-RUN npm ci && \
+RUN npm install --only=dev && \
 # release build is done automatically during 'npm ci',
 # so we can keep this commented out
 #npm run build && \
@@ -60,10 +58,14 @@ libpng
 
 WORKDIR /nodeapp
 
-COPY --from=nodebuilder /nodeapp/package*.json ./
-COPY --from=nodebuilder /nodeapp/app ./app
+# Retrieve the native addons artifacts from the previous stage
 COPY --from=nodebuilder /nodeapp/build ./build
-COPY --from=nodebuilder /nodeapp/node_modules ./node_modules
+
+# Then add all the rest
+ADD package*.json ./
+ADD app ./app
+
+RUN npm ci
 
 EXPOSE 8333
 
