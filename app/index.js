@@ -9,9 +9,9 @@ const hdrbil = require("./hdrbil_bindings");
 
 const k_listening_port = 8333;
 
-/*********************** PRELIMINARY ***********************/
-function buildErrorJson(message) {
-  return {"message": message};
+/* ********************** PRELIMINARY ********************** */
+function buildErrorJson (message) {
+  return { message };
 }
 
 const app = express();
@@ -21,34 +21,29 @@ app.use(compression());
 
 app.use(bodyParser.json());
 
-
-/*********************** ROUTES ***********************/
+/* ********************** ROUTES ********************** */
 const version1 = require("./routes/v1");
 app.use("/app/v1", version1);
-
 
 // Let them know we're alive...
 app.use("/health", (req, res) => {
   res.send();
 });
 
-app.all("*", function(req, res) {
+app.all("*", function (req, res) {
   res.status(404).json(buildErrorJson("Unknown request."));
 });
 
-app.use(function(err, req, res, next) {
+app.use(function (err, req, res, next) {
   console.error(err.message);
   console.error(err);
   if (!err.statusCode) err.statusCode = 500; // If err has no specified error code, set error code to 'Internal Server Error (500)'
   res.status(err.statusCode).json(buildErrorJson(err.message)); // All HTTP requests must have a response, so let's send back an error with its status code and message
 });
 
+// const res = hdrbil.run(["bounds", "/some/path", "layer", "3"]);
 
-
-//const res = hdrbil.run(["bounds", "/some/path", "layer", "3"]);
-
-
-/*********************** KICK-OFF ***********************/
+/* ********************** KICK-OFF ********************** */
 app.listen(k_listening_port, () => {
   console.log("Server running on port " + k_listening_port);
 });
