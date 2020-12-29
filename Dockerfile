@@ -44,7 +44,7 @@ ADD --chown=nodebuild:nodebuild package*.json binding.gyp ./
 ADD --chown=nodebuild:nodebuild cppsrc ./cppsrc
 
 RUN npm install --only=dev && \
-# release build is done automatically during 'npm ci',
+# release build is done automatically during 'npm install'
 # so we can keep this commented out
 #npm run build && \
 npm run build:debug
@@ -67,7 +67,7 @@ COPY --from=nodebuilder /nodeapp/build ./build
 ADD package*.json ./
 ADD app ./app
 
-RUN npm ci
+RUN npm ci --only=prod
 
 EXPOSE 8333
 
