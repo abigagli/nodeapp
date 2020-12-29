@@ -72,4 +72,7 @@ RUN npm ci --only=prod
 EXPOSE 8333
 
 USER node
-CMD ["npm", "run" ,"start"]
+
+# Don't use npm as it won't pass OS signals, possibly
+# causing problems with graceful shutdown
+CMD ["node", "app/index.js"]
