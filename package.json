@@ -2,7 +2,7 @@
   "name": "nodeapp",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "app/index.js",
   "gypfile": "true",
   "scripts": {
     "test": "jest --coverage",
