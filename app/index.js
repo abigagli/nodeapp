@@ -7,6 +7,8 @@ const compression = require("compression");
 const nocache = require("nocache");
 const hdrbil = require("./hdrbil_bindings");
 
+console.debug("hdrbil: ", hdrbil);
+
 const k_listening_port = 8333;
 
 /* ********************** PRELIMINARY ********************** */
