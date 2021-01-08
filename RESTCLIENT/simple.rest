@@ -1,7 +1,7 @@
-GET http://localhost:8333/app/v1/endpoint1/queryparam=somevalue 
+GET http://localhost:8333/app/v1/endpoint1?queryparam=somevalue
 
 ###
-GET http://localhost:8333/app/v1/endpoint1/URLPARAMETER?queryparam=somevalue 
+GET http://localhost:8333/app/v1/endpoint1/URLPARAMETER?queryparam=somevalue
 
 ###
 
